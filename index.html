@@ -73,15 +73,15 @@ code{font-family:var(--mono)}
 .nav a:hover{color:var(--blue);text-decoration:underline}
 
 /* Introduction */
-.intro{padding-block:64px 40px}
-.intro h1{font-size:clamp(2rem,1.45rem + 1.9vw,2.75rem);line-height:1.15;letter-spacing:-.015em;max-width:22em}
-.intro__text{margin-top:20px;max-width:46em}
-.intro__text p{color:var(--text-2);font-size:1.125rem;line-height:1.65}
+.intro{padding-block:72px 48px;text-align:center}
+.intro h1{font-size:clamp(2rem,1.45rem + 1.9vw,2.75rem);line-height:1.15;letter-spacing:-.015em;max-width:22em;margin-inline:auto}
+.intro__text{margin:22px auto 0;max-width:44em}
+.intro__text p{color:var(--text-2);font-size:1.125rem;line-height:1.65;text-wrap:balance}
 .intro__text p + p{margin-top:12px}
 
 /* Resources */
 .resources{padding-block:16px 80px}
-.resources__title{font-size:1.25rem}
+.resources__title{font-size:1.25rem;text-align:center}
 .boxes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:20px}
 .box{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:4px;padding:28px 28px 26px}
 .box:hover{border-color:var(--blue)}
@@ -170,6 +170,7 @@ code{font-family:var(--mono)}
   .brand__rule{height:32px}
   .brand__full{display:none}
   .intro{padding-block:40px 28px}
+  .intro,.resources__title{text-align:left}
   .intro__text p{font-size:1.0625rem}
   .resources{padding-bottom:56px}
   .box{padding:24px 20px 22px}
