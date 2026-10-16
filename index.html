@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Reference Material Document (DRMD)</title>
+<meta name="description" content="The Digital Reference Material Document (DRMD) is an XML format for reference material certificates and product information sheets, aligned with ISO 33401:2024. Schema, guidance document and generator, openly available.">
+<meta name="author" content="Bundesanstalt für Materialforschung und -prüfung (BAM)">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Digital Reference Material Document (DRMD)">
+<meta property="og:description" content="An XML format for reference material certificates and product information sheets, aligned with ISO 33401:2024.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/InterDisplay-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/Inter-Regular.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:500;font-display:swap;src:url("assets/fonts/Inter-Medium.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:600;font-display:swap;src:url("assets/fonts/Inter-SemiBold.woff2") format("woff2")}
+@font-face{font-family:"Inter Display";font-style:normal;font-weight:600;font-display:swap;src:url("assets/fonts/InterDisplay-SemiBold.woff2") format("woff2")}
+@font-face{font-family:"Inter Display";font-style:normal;font-weight:700;font-display:swap;src:url("assets/fonts/InterDisplay-Bold.woff2") format("woff2")}
+
+:root{
+  --text:#1B2430;        /* main text, dark slate */
+  --text-2:#465161;      /* secondary text */
+  --text-3:#5A6676;      /* captions and notes */
+  --blue:#0E4A7E;        /* navy from the DRMD logo: links, box edges */
+  --blue-dark:#0A3360;
+  --bg:#FFFFFF;
+  --bg-2:#F4F6F9;        /* light grey-blue for alternate sections */
+  --line:#DCE1E8;
+  --line-2:#BCC5D1;
+  --mark:#D3ECFA;        /* light blue from the BAM logo, used to mark values */
+  --wrap:1120px;
+  --gutter:32px;
+  --sans:"Inter",-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --display:"Inter Display","Inter",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:ui-monospace,"Cascadia Mono","Segoe UI Mono",Consolas,"SFMono-Regular",Menlo,"Liberation Mono",monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+[id]{scroll-margin-top:96px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:1.0625rem;line-height:1.6;font-feature-settings:"cv11" 1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img,svg{display:block;max-width:100%}
+a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:.18em}
+a:hover{color:var(--blue-dark)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:2px}
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:600;color:var(--text)}
+p{margin:0}
+code{font-family:var(--mono)}
+
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+.skip{position:absolute;left:var(--gutter);top:-60px;z-index:20;background:var(--blue);color:#fff;padding:10px 16px;border-radius:4px;font-weight:600;text-decoration:none}
+.skip:focus{top:12px;color:#fff}
+
+/* Header */
+.masthead{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line)}
+.masthead__inner{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:80px}
+.brand{display:flex;align-items:center;gap:20px;min-width:0}
+.brand__bam img{height:46px;width:auto}
+.brand__rule{width:1px;height:40px;background:var(--line)}
+.brand__drmd{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;min-width:0}
+.brand__drmd:hover{color:var(--text)}
+.brand__mark{height:40px;width:auto}
+.brand__text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand__name{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:.01em}
+.brand__full{font-size:.8125rem;color:var(--text-3);white-space:nowrap}
+.nav{display:flex;gap:28px}
+.nav a{color:var(--text-2);font-size:.9375rem;text-decoration:none}
+.nav a:hover{color:var(--blue);text-decoration:underline}
+
+/* Introduction */
+.intro{padding-block:64px 40px}
+.intro h1{font-size:clamp(2rem,1.45rem + 1.9vw,2.75rem);line-height:1.15;letter-spacing:-.015em;max-width:22em}
+.intro__text{margin-top:20px;max-width:46em}
+.intro__text p{color:var(--text-2);font-size:1.125rem;line-height:1.65}
+.intro__text p + p{margin-top:12px}
+
+/* Resources */
+.resources{padding-block:16px 80px}
+.resources__title{font-size:1.25rem}
+.boxes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:20px}
+.box{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:4px;padding:28px 28px 26px}
+.box:hover{border-color:var(--blue)}
+.box:focus-within{outline:3px solid var(--blue);outline-offset:3px}
+.box__icon{width:34px;height:34px;color:var(--blue)}
+.box__title{margin-top:18px;font-size:1.375rem;line-height:1.25}
+.box__link{color:var(--text);text-decoration:none}
+.box__link::after{content:"";position:absolute;inset:0;z-index:1}
+.box__link:focus-visible{outline:none}
+.box:hover .box__link{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
+.box__desc{margin-top:10px;color:var(--text-2);font-size:1rem}
+.box__list{list-style:none;margin:16px 0 0;padding:0;font-size:.9375rem;color:var(--text-2)}
+.box__list li{position:relative;padding:3px 0 3px 18px}
+.box__list li::before{content:"";position:absolute;left:3px;top:.9em;width:6px;height:6px;border-radius:50%;background:var(--line-2)}
+.box__foot{margin-top:auto;padding-top:22px;border-top:0}
+.box__action{font-weight:600;color:var(--blue)}
+.box__host{margin-top:2px;font-size:.8125rem;color:var(--text-3);overflow-wrap:anywhere}
+
+/* About */
+.about{background:var(--bg-2);border-block:1px solid var(--line);padding-block:72px}
+.about h2,.contact h2{font-size:clamp(1.5rem,1.2rem + 1vw,1.875rem);line-height:1.2;letter-spacing:-.01em}
+.about__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}
+.about__intro p{margin-top:16px;color:var(--text-2);max-width:32em}
+.about__intro h3{margin-top:36px;font-size:1.125rem}
+.types{margin:8px 0 0}
+.types dt{margin-top:14px;font-weight:600}
+.types dd{margin:2px 0 0;color:var(--text-2);font-size:1rem;max-width:32em}
+.panel{background:#fff;border:1px solid var(--line);border-radius:4px;padding:26px 28px 22px}
+.panel__caption{font-size:.875rem;color:var(--text-3)}
+.tree__root{margin-top:12px;font-family:var(--mono);font-size:.9375rem;font-weight:600;color:var(--text)}
+.tree__list{list-style:none;margin:6px 0 0 8px;padding:0}
+.tree__list li{position:relative;padding:10px 0 10px 30px}
+.tree__list li::before{content:"";position:absolute;left:0;top:0;bottom:0;border-left:1px solid var(--line-2)}
+.tree__list li:last-child::before{bottom:auto;height:1.55em}
+.tree__list li::after{content:"";position:absolute;left:0;top:1.55em;width:20px;border-top:1px solid var(--line-2)}
+.tree__name{font-family:var(--mono);font-size:.9375rem;font-weight:600;color:var(--blue)}
+.tree__opt{margin-left:8px;font-size:.8125rem;color:var(--text-3)}
+.tree__desc{display:block;margin-top:2px;font-size:.9375rem;color:var(--text-2)}
+
+/* Example: one certified value in the PDF and in the DRMD */
+.example{margin:56px 0 0}
+.example h3{font-size:1.125rem}
+.example__intro{margin-top:8px;color:var(--text-2);max-width:46em}
+.example__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;margin-top:20px;align-items:stretch}
+.sheet__title{margin-top:8px;font-weight:600}
+.sheet__table{width:100%;margin-top:12px;border-collapse:collapse;font-size:.9375rem;font-variant-numeric:tabular-nums}
+.sheet__table caption{caption-side:top;text-align:left;font-size:.875rem;color:var(--text-2);padding-bottom:4px}
+.sheet__table th,.sheet__table td{padding:8px 8px;text-align:left;border-bottom:1px solid var(--line)}
+.sheet__table thead th{font-size:.8125rem;font-weight:500;color:var(--text-3);border-bottom:1px solid var(--text)}
+.sheet__table tbody th{font-weight:500}
+.sheet__table td,.sheet__table thead th:not(:first-child){text-align:right}
+.sheet__table tbody tr:last-child th,.sheet__table tbody tr:last-child td{border-bottom:0}
+.sheet__foot{margin-top:10px;font-size:.8125rem;color:var(--text-3)}
+.code pre{margin:12px 0 0;padding:14px 16px;overflow-x:auto;background:var(--bg-2);border:1px solid var(--line);border-radius:3px;font-size:.8125rem;line-height:1.65;color:var(--text);tab-size:2}
+.x-p{color:#6B7684}.x-t{color:var(--blue)}.x-a{color:#5A6676}.x-v{color:#7A3E1D}
+.mark,.hl{background:var(--mark);border-radius:2px;padding:1px 3px;margin:0 -3px}
+.example figcaption{margin-top:12px;font-size:.875rem;color:var(--text-3)}
+
+/* Contact */
+.contact{padding-block:72px}
+.contact p{margin-top:12px;color:var(--text-2);max-width:42em}
+.contact__mail{display:inline-block;margin-top:14px;font-size:1.125rem;font-weight:600}
+
+/* Footer */
+.footer{border-top:1px solid var(--line);background:var(--bg-2)}
+.footer__inner{display:flex;align-items:center;justify-content:space-between;gap:12px 32px;flex-wrap:wrap;padding-block:26px;font-size:.875rem;color:var(--text-2)}
+.footer a{color:var(--text-2)}
+.footer a:hover{color:var(--blue)}
+.nw{white-space:nowrap}
+
+@media (max-width:1000px){
+  .boxes{grid-template-columns:minmax(0,1fr)}
+  .about__grid{grid-template-columns:minmax(0,1fr);gap:40px}
+  .example__grid{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:760px){
+  .nav{display:none}
+}
+@media (max-width:640px){
+  :root{--gutter:16px}
+  body{font-size:1rem}
+  .masthead__inner{min-height:64px}
+  .brand{gap:14px}
+  .brand__bam img{height:36px}
+  .brand__mark{height:32px}
+  .brand__rule{height:32px}
+  .brand__full{display:none}
+  .intro{padding-block:40px 28px}
+  .intro__text p{font-size:1.0625rem}
+  .resources{padding-bottom:56px}
+  .box{padding:24px 20px 22px}
+  .about{padding-block:56px}
+  .panel{padding:20px 16px 16px}
+  .tree__list li{padding-left:24px}
+  .tree__list li::after{width:14px}
+  .sheet__table th,.sheet__table td{padding:8px 4px}
+  .code pre{font-size:.75rem;padding:12px}
+  .contact{padding-block:56px}
+}
+@media print{
+  .masthead{position:static}
+  .nav,.skip{display:none}
+  .about,.footer{background:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <div class="brand">
+      <a class="brand__bam" href="https://bam.de/en/" title="Bundesanstalt für Materialforschung und -prüfung (BAM)">
+        <img src="assets/bam-logo.png" width="113" height="46" alt="BAM – Bundesanstalt für Materialforschung und -prüfung">
+      </a>
+      <span class="brand__rule" aria-hidden="true"></span>
+      <a class="brand__drmd" href="#top">
+        <img class="brand__mark" src="assets/drmd-logo.svg" width="62" height="40" alt="">
+        <span class="brand__text">
+          <span class="brand__name">DRMD</span>
+          <span class="brand__full">Digital Reference Material Document</span>
+        </span>
+      </a>
+    </div>
+    <nav class="nav" aria-label="On this page">
+      <a href="#resources">Resources</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="intro" id="top">
+    <div class="wrap">
+      <h1>Digital Reference Material Document (DRMD)</h1>
+      <div class="intro__text">
+        <p>The DRMD is an XML format for the documents that accompany a reference material: certificates and product information sheets. Its content follows ISO&nbsp;33401:2024, so that certified values, uncertainties and statements can be read and checked by software.</p>
+        <p>The DRMD is developed at the Bundesanstalt für Materialforschung <span class="nw">und -prüfung</span> (BAM). The schema, the guidance document and the generator are openly available for everyone to use.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="resources" id="resources" aria-labelledby="resources-title">
+    <div class="wrap">
+      <h2 class="resources__title" id="resources-title">Resources</h2>
+      <div class="boxes">
+        <article class="box">
+          <svg class="box__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5H9.5A2.5 2.5 0 0 0 7 7.5v5.2L4.5 16 7 19.3v5.2A2.5 2.5 0 0 0 9.5 27H11"/><path d="M21 5h1.5A2.5 2.5 0 0 1 25 7.5v5.2l2.5 3.3-2.5 3.3v5.2a2.5 2.5 0 0 1-2.5 2.5H21"/><path d="M12.5 12h7M12.5 16h7M12.5 20h4.5"/></svg>
+          <h3 class="box__title"><a class="box__link" href="https://github.com/punitharumilli/Schema">Schema</a></h3>
+          <p class="box__desc">The XML Schema defines the structure of a DRMD. The Schematron business rules add the ISO&nbsp;33401:2024 requirements for each document type. A document has to pass both.</p>
+          <ul class="box__list">
+            <li>Version 1.0.0</li>
+            <li>Two worked example documents</li>
+            <li>Validation script and rule tests</li>
+          </ul>
+          <div class="box__foot">
+            <p class="box__action">View the schema on GitHub</p>
+            <p class="box__host">github.com/punitharumilli/Schema</p>
+          </div>
+        </article>
+
+        <article class="box">
+          <svg class="box__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5c3.6-1.4 8-1.2 12 1.3 4-2.5 8.4-2.7 12-1.3v17c-3.6-1.4-8-1.2-12 1.3-4-2.5-8.4-2.7-12-1.3z"/><path d="M16 8.8v17"/><path d="M8 12.5c1.8-.4 3.7-.2 5 .5M8 16.5c1.8-.4 3.7-.2 5 .5M19 13c1.3-.7 3.2-.9 5-.5"/></svg>
+          <h3 class="box__title"><a class="box__link" href="https://punitharumilli.github.io/BestPracticeDocs/">Guidance Document</a></h3>
+          <p class="box__desc">Explains every element of the schema with rules and examples, for reference material producers, laboratories, software developers and auditors.</p>
+          <ul class="box__list">
+            <li>Element-by-element reference</li>
+            <li>Units, quantities and uncertainty</li>
+            <li>ISO&nbsp;33401:2024 conformance map and checklists</li>
+          </ul>
+          <div class="box__foot">
+            <p class="box__action">Read the guidance document</p>
+            <p class="box__host">punitharumilli.github.io/BestPracticeDocs</p>
+          </div>
+        </article>
+
+        <article class="box">
+          <svg class="box__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 27H8.5A2.5 2.5 0 0 1 6 24.5v-17A2.5 2.5 0 0 1 8.5 5H17l6 6v6"/><path d="M17 5v4.5a1.5 1.5 0 0 0 1.5 1.5H23"/><path d="M10.5 15h7M10.5 19h4"/><path d="M21.5 20.5 19 23.5l2.5 3M25.5 20.5l2.5 3-2.5 3"/></svg>
+          <h3 class="box__title"><a class="box__link" href="https://punitharumilli.github.io/DRMD_Generator/">AI-Powered Generator</a></h3>
+          <p class="box__desc">Converts PDF certificates and product information sheets into DRMD files in the browser. Each value can be traced back to the PDF, and every document is validated before export.</p>
+          <ul class="box__list">
+            <li>Single documents or whole folders</li>
+            <li>Units converted to D-SI, identifiers added</li>
+            <li>Uses your own Google Gemini API key</li>
+          </ul>
+          <div class="box__foot">
+            <p class="box__action">Open the generator</p>
+            <p class="box__host">punitharumilli.github.io/DRMD_Generator</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="about__grid">
+        <div class="about__intro">
+          <h2 id="about-title">What a DRMD contains</h2>
+          <p>A DRMD is a single XML file with one root element. Everything ISO&nbsp;33401:2024 asks a certificate or product information sheet to state has a fixed place in it, so software always finds it in the same place.</p>
+          <h3>Two document types</h3>
+          <dl class="types">
+            <dt>Reference material certificate</dt>
+            <dd>Accompanies a certified reference material. At least one property value carries a measurement uncertainty, and the document states metrological traceability.</dd>
+            <dt>Product information sheet</dt>
+            <dd>Accompanies any other reference material. Uncertainty and traceability are permitted but not required.</dd>
+          </dl>
+        </div>
+
+        <div class="panel">
+          <p class="panel__caption">Structure of a DRMD document</p>
+          <p class="tree__root">digitalReferenceMaterialDocument</p>
+          <ul class="tree__list">
+            <li><code class="tree__name">administrativeData</code><span class="tree__desc">Title, document identifier, version, period of validity, the producer and the persons responsible.</span></li>
+            <li><code class="tree__name">materials</code><span class="tree__desc">Each reference material with its name, description, minimum sample size and identifiers.</span></li>
+            <li><code class="tree__name">propertiesList</code><span class="tree__desc">Property values with units in the D-SI format, their uncertainties and the measurement procedures.</span></li>
+            <li><code class="tree__name">statements</code><span class="tree__desc">Intended use, commutability, storage, handling and use, metrological traceability, health and safety.</span></li>
+            <li><code class="tree__name">comment</code><span class="tree__opt">optional</span><span class="tree__desc">Remarks on the document.</span></li>
+            <li><code class="tree__name">document</code><span class="tree__opt">optional</span><span class="tree__desc">An embedded human-readable copy, such as the original PDF.</span></li>
+            <li><code class="tree__name">ds:Signature</code><span class="tree__opt">optional</span><span class="tree__desc">XML digital signature.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <figure class="example" aria-labelledby="example-title">
+        <h3 id="example-title">Example: one certified value</h3>
+        <p class="example__intro">The same value as it appears in a certificate and as it is stored in a DRMD.</p>
+        <div class="example__grid">
+          <div class="panel sheet">
+            <p class="panel__caption">In the certificate (PDF)</p>
+            <p class="sheet__title">Aluminium alloy disc EXA-1a</p>
+            <table class="sheet__table">
+              <caption>Certified values</caption>
+              <thead>
+                <tr><th scope="col">Element</th><th scope="col">Mass fraction</th><th scope="col">Uncertainty <i>U</i></th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Silicon</th><td><span class="mark">6.42&nbsp;%</span></td><td><span class="mark">0.08&nbsp;%</span></td></tr>
+                <tr><th scope="row">Copper</th><td>3.15&nbsp;%</td><td>0.06&nbsp;%</td></tr>
+              </tbody>
+            </table>
+            <p class="sheet__foot"><i>U</i> is the expanded uncertainty with a coverage factor <i>k</i>&nbsp;=&nbsp;2.</p>
+          </div>
+          <div class="panel code">
+            <p class="panel__caption">In the DRMD (XML)</p>
+<pre><code><span class="x-p">&lt;</span><span class="x-t">drmd:quantity</span> <span class="x-a">id</span><span class="x-p">=</span><span class="x-v">"q_si"</span><span class="x-p">&gt;</span>
+  <span class="x-p">&lt;</span><span class="x-t">dcc:name</span><span class="x-p">&gt;</span>
+    <span class="x-p">&lt;</span><span class="x-t">dcc:content</span> <span class="x-a">lang</span><span class="x-p">=</span><span class="x-v">"en"</span><span class="x-p">&gt;</span>Silicon<span class="x-p">&lt;/</span><span class="x-t">dcc:content</span><span class="x-p">&gt;</span>
+  <span class="x-p">&lt;/</span><span class="x-t">dcc:name</span><span class="x-p">&gt;</span>
+  <span class="x-p">&lt;</span><span class="x-t">si:real</span><span class="x-p">&gt;</span>
+    <span class="x-p">&lt;</span><span class="x-t">si:quantityTypeQUDT</span><span class="x-p">&gt;</span>MassFraction<span class="x-p">&lt;/</span><span class="x-t">si:quantityTypeQUDT</span><span class="x-p">&gt;</span>
+    <span class="x-p">&lt;</span><span class="x-t">si:value</span><span class="x-p">&gt;</span><span class="hl hl--1">6.42</span><span class="x-p">&lt;/</span><span class="x-t">si:value</span><span class="x-p">&gt;</span>
+    <span class="x-p">&lt;</span><span class="x-t">si:unit</span><span class="x-p">&gt;</span>\percent<span class="x-p">&lt;/</span><span class="x-t">si:unit</span><span class="x-p">&gt;</span>
+    <span class="x-p">&lt;</span><span class="x-t">si:measurementUncertaintyUnivariate</span><span class="x-p">&gt;</span>
+      <span class="x-p">&lt;</span><span class="x-t">si:expandedMU</span><span class="x-p">&gt;</span>
+        <span class="x-p">&lt;</span><span class="x-t">si:valueExpandedMU</span><span class="x-p">&gt;</span><span class="hl hl--2">0.08</span><span class="x-p">&lt;/</span><span class="x-t">si:valueExpandedMU</span><span class="x-p">&gt;</span>
+        <span class="x-p">&lt;</span><span class="x-t">si:coverageFactor</span><span class="x-p">&gt;</span>2<span class="x-p">&lt;/</span><span class="x-t">si:coverageFactor</span><span class="x-p">&gt;</span>
+      <span class="x-p">&lt;/</span><span class="x-t">si:expandedMU</span><span class="x-p">&gt;</span>
+    <span class="x-p">&lt;/</span><span class="x-t">si:measurementUncertaintyUnivariate</span><span class="x-p">&gt;</span>
+  <span class="x-p">&lt;/</span><span class="x-t">si:real</span><span class="x-p">&gt;</span>
+<span class="x-p">&lt;/</span><span class="x-t">drmd:quantity</span><span class="x-p">&gt;</span></code></pre>
+          </div>
+        </div>
+        <figcaption>Shortened from the worked example in the DRMD schema repository.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <h2 id="contact-title">Contact</h2>
+      <p>Questions about the DRMD, feedback on the guidance document, or a certificate that does not convert well: please write to the DRMD team at BAM.</p>
+      <a class="contact__mail" href="mailto:drmd@bam.de">drmd@bam.de</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p>© 2026 <a href="https://bam.de/en/">Bundesanstalt für Materialforschung <span class="nw">und -prüfung (BAM)</span></a></p>
+    <p><a href="mailto:drmd@bam.de">drmd@bam.de</a></p>
+  </div>
+</footer>
+</body>
+</html>
