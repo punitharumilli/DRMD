@@ -13,6 +13,7 @@ Landing page for the Digital Reference Material Document (DRMD): an XML format f
 | Schema (XML Schema and Schematron business rules) | <https://github.com/punitharumilli/Schema> |
 | Guidance document | <https://punitharumilli.github.io/BestPracticeDocs/> |
 | AI-powered generator | <https://punitharumilli.github.io/DRMD_Generator/> |
+| Video guides | <https://punitharumilli.github.io/DRMD_Videos/> |
 
 ---
 
@@ -22,8 +23,8 @@ Landing page for the Digital Reference Material Document (DRMD): an XML format f
 index.html                     the page
 assets/
 ├── bam-logo.png               BAM logo
-├── drmd-logo.svg              DRMD logo
-├── favicon.svg, favicon-32.png, apple-touch-icon.png
+├── drmd-logo.png              DRMD logo
+├── favicon-32.png, favicon-64.png, apple-touch-icon.png
 └── fonts/                     Inter typeface (WOFF2) and its licence
 .github/workflows/pages.yml    publishes the page on GitHub Pages
 ```
@@ -50,6 +51,7 @@ All links are in `index.html`. When a resource moves, for example to another Git
 - `https://github.com/punitharumilli/Schema`
 - `https://punitharumilli.github.io/BestPracticeDocs/`
 - `https://punitharumilli.github.io/DRMD_Generator/`
+- `https://punitharumilli.github.io/DRMD_Videos/`
 
 The displayed addresses below each resource (`github.com/punitharumilli/Schema` and similar) are in the same file.
 

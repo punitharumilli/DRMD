@@ -11,8 +11,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Digital Reference Material Document (DRMD)">
 <meta property="og:description" content="An XML format for reference material certificates and product information sheets, aligned with ISO 33401:2024.">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/favicon-64.png" sizes="64x64" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/InterDisplay-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
@@ -64,7 +64,7 @@ code{font-family:var(--mono)}
 .brand__rule{width:1px;height:40px;background:var(--line)}
 .brand__drmd{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;min-width:0}
 .brand__drmd:hover{color:var(--text)}
-.brand__mark{height:40px;width:auto}
+.brand__mark{height:44px;width:auto}
 .brand__text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
 .brand__name{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:.01em}
 .brand__full{font-size:.8125rem;color:var(--text-3);white-space:nowrap}
@@ -82,7 +82,7 @@ code{font-family:var(--mono)}
 /* Resources */
 .resources{padding-block:16px 80px}
 .resources__title{font-size:1.25rem;text-align:center}
-.boxes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:20px}
+.boxes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:20px}
 .box{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:4px;padding:28px 28px 26px}
 .box:hover{border-color:var(--blue)}
 .box:focus-within{outline:3px solid var(--blue);outline-offset:3px}
@@ -153,12 +153,12 @@ code{font-family:var(--mono)}
 .nw{white-space:nowrap}
 
 @media (max-width:1000px){
-  .boxes{grid-template-columns:minmax(0,1fr)}
   .about__grid{grid-template-columns:minmax(0,1fr);gap:40px}
   .example__grid{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:760px){
   .nav{display:none}
+  .boxes{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:640px){
   :root{--gutter:16px}
@@ -166,7 +166,7 @@ code{font-family:var(--mono)}
   .masthead__inner{min-height:64px}
   .brand{gap:14px}
   .brand__bam img{height:36px}
-  .brand__mark{height:32px}
+  .brand__mark{height:34px}
   .brand__rule{height:32px}
   .brand__full{display:none}
   .intro{padding-block:40px 28px}
@@ -200,7 +200,7 @@ code{font-family:var(--mono)}
       </a>
       <span class="brand__rule" aria-hidden="true"></span>
       <a class="brand__drmd" href="#top">
-        <img class="brand__mark" src="assets/drmd-logo.svg" width="62" height="40" alt="">
+        <img class="brand__mark" src="assets/drmd-logo.png" width="72" height="44" alt="">
         <span class="brand__text">
           <span class="brand__name">DRMD</span>
           <span class="brand__full">Digital Reference Material Document</span>
@@ -221,7 +221,7 @@ code{font-family:var(--mono)}
       <h1>Digital Reference Material Document (DRMD)</h1>
       <div class="intro__text">
         <p>The DRMD is an XML format for the documents that accompany a reference material: certificates and product information sheets. Its content follows ISO&nbsp;33401:2024, so that certified values, uncertainties and statements can be read and checked by software.</p>
-        <p>The DRMD is developed at the Bundesanstalt für Materialforschung <span class="nw">und -prüfung</span> (BAM). The schema, the guidance document and the generator are openly available for everyone to use.</p>
+        <p>The DRMD is developed at the Bundesanstalt für Materialforschung <span class="nw">und -prüfung</span> (BAM). The schema, the guidance document, the generator and the video guides are openly available for everyone to use.</p>
       </div>
     </div>
   </section>
@@ -272,6 +272,21 @@ code{font-family:var(--mono)}
           <div class="box__foot">
             <p class="box__action">Open the generator</p>
             <p class="box__host">punitharumilli.github.io/DRMD_Generator</p>
+          </div>
+        </article>
+
+        <article class="box">
+          <svg class="box__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6.5" width="25" height="17" rx="2.5"/><path d="M13.5 11.5v7l6-3.5z"/><path d="M9 27h14"/></svg>
+          <h3 class="box__title"><a class="box__link" href="https://punitharumilli.github.io/DRMD_Videos/">Video Guides</a></h3>
+          <p class="box__desc">Step-by-step videos that show how to work with the DRMD tools, with spoken explanation and captions. Each video is divided into chapters, so you can go straight to the step you need.</p>
+          <ul class="box__list">
+            <li>DRMD AI Generator guide, 12 minutes</li>
+            <li>Chapters for every step</li>
+            <li>Full transcript to read along</li>
+          </ul>
+          <div class="box__foot">
+            <p class="box__action">Watch the videos</p>
+            <p class="box__host">punitharumilli.github.io/DRMD_Videos</p>
           </div>
         </article>
       </div>
