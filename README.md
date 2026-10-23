@@ -31,6 +31,8 @@ assets/
 
 The page has no external dependencies. Fonts and images are served from this repository, so no requests are made to other servers when the page is opened.
 
+A security policy at the top of `index.html` enforces this: the page runs no scripts and loads only its own fonts, images and styles. A script or a file from another server added later would be blocked, so keep everything in this repository.
+
 ---
 
 ## Publishing
