@@ -152,6 +152,7 @@ code{font-family:var(--mono)}
 .footer__inner{display:flex;align-items:center;justify-content:space-between;gap:12px 32px;flex-wrap:wrap;padding-block:26px;font-size:.875rem;color:var(--text-2)}
 .footer a{color:var(--text-2)}
 .footer a:hover{color:var(--blue)}
+.footer__note{margin-top:4px}
 .nw{white-space:nowrap}
 
 @media (max-width:1000px){
@@ -380,7 +381,10 @@ code{font-family:var(--mono)}
 
 <footer class="footer">
   <div class="wrap footer__inner">
-    <p>© 2026 <a href="https://bam.de/en/">Bundesanstalt für Materialforschung <span class="nw">und -prüfung (BAM)</span></a></p>
+    <div>
+      <p>© 2026 <a href="https://bam.de/en/">Bundesanstalt für Materialforschung <span class="nw">und -prüfung (BAM)</span></a> · Text licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+      <p class="footer__note">Partially funded and supported by the <a href="https://www.qi-digital.de/">QI-Digital</a> project</p>
+    </div>
     <p><a href="mailto:drmd@bam.de">drmd@bam.de</a></p>
   </div>
 </footer>

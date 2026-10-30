@@ -21,6 +21,8 @@ Landing page for the Digital Reference Material Document (DRMD): an XML format f
 
 ```
 index.html                     the page
+LICENSE                        CC BY 4.0, the licence of the page (see "Licence" below)
+CONTRIBUTING.md                how to report an error or ask for a change
 assets/
 ├── bam-logo.png               BAM logo
 ├── drmd-logo.png              DRMD logo
@@ -59,10 +61,25 @@ The displayed addresses below each resource (`github.com/punitharumilli/Schema` 
 
 ---
 
-## Licences
+## Changes and contributions
 
-- **Inter** typeface: SIL Open Font License 1.1, see `assets/fonts/LICENSE.txt`.
-- The **BAM** name and logo belong to the Bundesanstalt für Materialforschung und -prüfung (BAM).
+BAM maintains this page. If you find an error or need a change, please open an issue in this repository or write to [drmd@bam.de](mailto:drmd@bam.de). See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## Licence
+
+© 2026 Bundesanstalt für Materialforschung und -prüfung (BAM)
+
+| What | Licence |
+|---|---|
+| The page: its text, HTML and CSS (`index.html`), this README and the workflow in `.github/` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), see [`LICENSE`](LICENSE) |
+| **Inter** typeface (`assets/fonts/`) | SIL Open Font License 1.1, see `assets/fonts/LICENSE.txt` |
+| The **BAM** name and logo (`assets/bam-logo.png`), the DRMD logo and the icons made from it (`assets/drmd-logo.png`, `assets/favicon-32.png`, `assets/favicon-64.png`, `assets/apple-touch-icon.png`) | Not licensed. They identify BAM and the DRMD; please do not use them without BAM's permission |
+
+CC BY 4.0 lets anyone share and adapt the page, provided they credit BAM, link to the licence and say if they changed it; it gives no right to use the logos or to suggest that BAM endorses them.
+
+The development of the Digital Reference Material Document (DRMD) is partially funded and supported by the [QI-Digital](https://www.qi-digital.de/) project.
 
 ---
 
