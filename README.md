@@ -12,7 +12,7 @@ Landing page for the Digital Reference Material Document (DRMD): an XML format f
 |---|---|
 | Schema (XML Schema and Schematron business rules) | <https://github.com/punitharumilli/Schema> |
 | Guidance document | <https://punitharumilli.github.io/BestPracticeDocs/> |
-| AI-powered generator | <https://punitharumilli.github.io/DRMD_Generator/> |
+| Generator (manual entry, editing and AI conversion) | <https://punitharumilli.github.io/DRMD_Generator/> |
 | Video guides | <https://punitharumilli.github.io/DRMD_Videos/> |
 
 ---

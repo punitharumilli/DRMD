@@ -235,7 +235,7 @@ code{font-family:var(--mono)}
         <article class="box">
           <svg class="box__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5H9.5A2.5 2.5 0 0 0 7 7.5v5.2L4.5 16 7 19.3v5.2A2.5 2.5 0 0 0 9.5 27H11"/><path d="M21 5h1.5A2.5 2.5 0 0 1 25 7.5v5.2l2.5 3.3-2.5 3.3v5.2a2.5 2.5 0 0 1-2.5 2.5H21"/><path d="M12.5 12h7M12.5 16h7M12.5 20h4.5"/></svg>
           <h3 class="box__title"><a class="box__link" href="https://github.com/punitharumilli/Schema">Schema</a></h3>
-          <p class="box__desc">The XML Schema defines the structure of a DRMD. The Schematron business rules add the ISO&nbsp;33401:2024 requirements for each document type. A document has to pass both.</p>
+          <p class="box__desc">The XML Schema makes the DRMD machine-readable: it defines the structure of every document. It is complemented by further rules, the Schematron business rules for each document type. Together they safeguard DRMD compliance with ISO&nbsp;17034 and ISO&nbsp;33401.</p>
           <ul class="box__list">
             <li>Version 1.0.0</li>
             <li>Two worked example documents</li>
@@ -264,12 +264,12 @@ code{font-family:var(--mono)}
 
         <article class="box">
           <svg class="box__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 27H8.5A2.5 2.5 0 0 1 6 24.5v-17A2.5 2.5 0 0 1 8.5 5H17l6 6v6"/><path d="M17 5v4.5a1.5 1.5 0 0 0 1.5 1.5H23"/><path d="M10.5 15h7M10.5 19h4"/><path d="M21.5 20.5 19 23.5l2.5 3M25.5 20.5l2.5 3-2.5 3"/></svg>
-          <h3 class="box__title"><a class="box__link" href="https://punitharumilli.github.io/DRMD_Generator/">AI-Powered Generator</a></h3>
-          <p class="box__desc">Converts PDF certificates and product information sheets into DRMD files in the browser. Each value can be traced back to the PDF, and every document is validated before export.</p>
+          <h3 class="box__title"><a class="box__link" href="https://punitharumilli.github.io/DRMD_Generator/">Generator</a></h3>
+          <p class="box__desc">Creates and edits DRMD files in the browser: enter a document by hand, open and edit an existing DRMD, or convert PDF certificates and product information sheets with AI. Every document is validated before export.</p>
           <ul class="box__list">
-            <li>Single documents or whole folders</li>
-            <li>Units converted to D-SI, identifiers added</li>
-            <li>Uses your own Google Gemini API key</li>
+            <li>Manual entry and editing of DRMD files</li>
+            <li>AI conversion of single PDFs or whole folders, with your own API key</li>
+            <li>Units in D-SI, validated against the schema and the business rules</li>
           </ul>
           <div class="box__foot">
             <p class="box__action">Open the generator</p>
