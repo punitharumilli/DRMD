@@ -1,8 +1,10 @@
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/drmd-logo-on-white.png">
-    <img src="assets/drmd-logo.png" alt="Digital Reference Material Document (DRMD)" width="420">
-  </picture>
+  <a href="https://bamresearch.github.io/drmd/">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/drmd-logo-on-white.png">
+      <img src="assets/drmd-logo.png" alt="Digital Reference Material Document (DRMD)" width="420">
+    </picture>
+  </a>
 </p>
 
 <h1 align="center">DRMD (Digital Reference Material Document) Landing Page</h1>
@@ -54,7 +56,7 @@ The page has no external dependencies. Fonts and images are served from this rep
 
 A security policy at the top of `index.html` enforces this: the page runs no scripts and loads only its own fonts, images and styles. A script or a file from another server added later would be blocked, so keep everything in this repository.
 
-The BAM logo follows the BAM corporate design: it is the official file, unchanged, on a white background in the top right corner (on screen and in print), once on the page, without a link and without added text. Its file contains the protected space around the logo, so the page places nothing over its margins.
+The BAM logo follows the BAM corporate design: it is the official file, unchanged, on a white background in the top right corner (on screen and in print), once on the page, without added text, and linked to the BAM home page (<https://bam.de/en/>). Its file contains the protected space around the logo, so the page places nothing over its margins.
 
 ---
 

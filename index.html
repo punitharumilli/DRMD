@@ -71,7 +71,8 @@ code{font-family:var(--mono)}
 .brand img{height:58px;width:auto}
 /* BAM logo, top right, on white and only once on the page, as the BAM corporate design requires. The file
    is the official artwork with its protected space built in, so nothing may be placed over its margins. */
-.bam{flex:none;height:96px;width:auto}
+.bam-link{display:block;flex:none;line-height:0}
+.bam{height:96px;width:auto}
 .nav{display:flex;gap:28px;margin-left:auto}
 .nav a{color:var(--text-2);font-size:.9375rem;text-decoration:none}
 .nav a:hover{color:var(--blue);text-decoration:underline}
@@ -188,7 +189,7 @@ code{font-family:var(--mono)}
 @media print{
   .masthead{position:static}
   .nav,.skip{display:none}
-  .bam{margin-left:auto}
+  .bam-link{margin-left:auto}
   .about,.footer{background:none}
 }
 </style>
@@ -206,7 +207,7 @@ code{font-family:var(--mono)}
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
-    <img class="bam" src="assets/bam-logo.jpg" width="2300" height="1397" alt="Bundesanstalt für Materialforschung und -prüfung (BAM)">
+    <a class="bam-link" href="https://bam.de/en/"><img class="bam" src="assets/bam-logo.jpg" width="2300" height="1397" alt="Bundesanstalt für Materialforschung und -prüfung (BAM)"></a>
   </div>
 </header>
 
