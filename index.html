@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Copyright Bundesanstalt für Materialforschung und -prüfung (BAM). The text of this page is
+     licensed under CC BY 4.0, its code (the HTML structure and the style sheet) under the EUPL v1.2.
+     The DRMD logo and the BAM logo are not covered by these licences; see README.md. -->
 <!-- Security policy: this page runs no scripts and loads only its own images, fonts and styles. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; style-src 'unsafe-inline'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <title>Digital Reference Material Document (DRMD)</title>
@@ -13,6 +16,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Digital Reference Material Document (DRMD)">
 <meta property="og:description" content="An XML format for reference material certificates and product information sheets, aligned with ISO 33401:2024.">
+<meta property="og:image" content="https://bamresearch.github.io/drmd/assets/drmd-logo-on-white.png">
+<meta property="og:image:alt" content="Digital Reference Material Document (DRMD)">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="assets/favicon-64.png" sizes="64x64" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -29,8 +34,8 @@
   --text:#1B2430;        /* main text, dark slate */
   --text-2:#465161;      /* secondary text */
   --text-3:#5A6676;      /* captions and notes */
-  --blue:#0E4A7E;        /* navy from the DRMD logo: links, box edges */
-  --blue-dark:#0A3360;
+  --blue:#0F2F6D;        /* navy from the DRMD logo: links, box edges */
+  --blue-dark:#0A2150;
   --bg:#FFFFFF;
   --bg-2:#F4F6F9;        /* light grey-blue for alternate sections */
   --line:#DCE1E8;
@@ -60,17 +65,14 @@ code{font-family:var(--mono)}
 
 /* Header */
 .masthead{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line)}
-.masthead__inner{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:80px}
-.brand{display:flex;align-items:center;gap:20px;min-width:0}
-.brand__bam img{height:46px;width:auto}
-.brand__rule{width:1px;height:40px;background:var(--line)}
-.brand__drmd{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;min-width:0}
-.brand__drmd:hover{color:var(--text)}
-.brand__mark{height:44px;width:auto}
-.brand__text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
-.brand__name{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:.01em}
-.brand__full{font-size:.8125rem;color:var(--text-3);white-space:nowrap}
-.nav{display:flex;gap:28px}
+.masthead__inner{display:flex;align-items:center;gap:28px;min-height:96px}
+/* DRMD logo, top left. The artwork is used as provided (LOGO_POLICY.md): scaled, never cropped or recoloured. */
+.brand{display:block;flex:none;line-height:0}
+.brand img{height:58px;width:auto}
+/* BAM logo, top right, on white and only once on the page, as the BAM corporate design requires. The file
+   is the official artwork with its protected space built in, so nothing may be placed over its margins. */
+.bam{flex:none;height:96px;width:auto}
+.nav{display:flex;gap:28px;margin-left:auto}
 .nav a{color:var(--text-2);font-size:.9375rem;text-decoration:none}
 .nav a:hover{color:var(--blue);text-decoration:underline}
 
@@ -161,17 +163,15 @@ code{font-family:var(--mono)}
 }
 @media (max-width:760px){
   .nav{display:none}
+  .masthead__inner{justify-content:space-between}
   .boxes{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:640px){
   :root{--gutter:16px}
   body{font-size:1rem}
-  .masthead__inner{min-height:64px}
-  .brand{gap:14px}
-  .brand__bam img{height:36px}
-  .brand__mark{height:34px}
-  .brand__rule{height:32px}
-  .brand__full{display:none}
+  .masthead__inner{min-height:72px;justify-content:space-between}
+  .brand img{height:42px}
+  .bam{height:72px}
   .intro{padding-block:40px 28px}
   .intro,.resources__title{text-align:left}
   .intro__text p{font-size:1.0625rem}
@@ -188,6 +188,7 @@ code{font-family:var(--mono)}
 @media print{
   .masthead{position:static}
   .nav,.skip{display:none}
+  .bam{margin-left:auto}
   .about,.footer{background:none}
 }
 </style>
@@ -197,24 +198,15 @@ code{font-family:var(--mono)}
 
 <header class="masthead">
   <div class="wrap masthead__inner">
-    <div class="brand">
-      <a class="brand__bam" href="https://bam.de/en/" title="Bundesanstalt für Materialforschung und -prüfung (BAM)">
-        <img src="assets/bam-logo.png" width="113" height="46" alt="BAM – Bundesanstalt für Materialforschung und -prüfung">
-      </a>
-      <span class="brand__rule" aria-hidden="true"></span>
-      <a class="brand__drmd" href="#top">
-        <img class="brand__mark" src="assets/drmd-logo.png" width="72" height="44" alt="">
-        <span class="brand__text">
-          <span class="brand__name">DRMD</span>
-          <span class="brand__full">Digital Reference Material Document</span>
-        </span>
-      </a>
-    </div>
+    <a class="brand" href="#top">
+      <img src="assets/drmd-logo-640.png" width="640" height="219" alt="Digital Reference Material Document (DRMD)">
+    </a>
     <nav class="nav" aria-label="On this page">
       <a href="#resources">Resources</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
+    <img class="bam" src="assets/bam-logo.jpg" width="2300" height="1397" alt="Bundesanstalt für Materialforschung und -prüfung (BAM)">
   </div>
 </header>
 
@@ -235,7 +227,7 @@ code{font-family:var(--mono)}
       <div class="boxes">
         <article class="box">
           <svg class="box__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5H9.5A2.5 2.5 0 0 0 7 7.5v5.2L4.5 16 7 19.3v5.2A2.5 2.5 0 0 0 9.5 27H11"/><path d="M21 5h1.5A2.5 2.5 0 0 1 25 7.5v5.2l2.5 3.3-2.5 3.3v5.2a2.5 2.5 0 0 1-2.5 2.5H21"/><path d="M12.5 12h7M12.5 16h7M12.5 20h4.5"/></svg>
-          <h3 class="box__title"><a class="box__link" href="https://github.com/punitharumilli/Schema">Schema</a></h3>
+          <h3 class="box__title"><a class="box__link" href="https://github.com/BAMresearch/drmd-schema">Schema</a></h3>
           <p class="box__desc">The XML Schema makes the DRMD machine-readable: it defines the structure of every document. It is complemented by further rules, the Schematron business rules for each document type. Together they safeguard DRMD compliance with ISO&nbsp;17034 and ISO&nbsp;33401.</p>
           <ul class="box__list">
             <li>Version 1.0.0</li>
@@ -244,13 +236,13 @@ code{font-family:var(--mono)}
           </ul>
           <div class="box__foot">
             <p class="box__action">View the schema on GitHub</p>
-            <p class="box__host">github.com/punitharumilli/Schema</p>
+            <p class="box__host">github.com/BAMresearch/drmd-schema</p>
           </div>
         </article>
 
         <article class="box">
           <svg class="box__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5c3.6-1.4 8-1.2 12 1.3 4-2.5 8.4-2.7 12-1.3v17c-3.6-1.4-8-1.2-12 1.3-4-2.5-8.4-2.7-12-1.3z"/><path d="M16 8.8v17"/><path d="M8 12.5c1.8-.4 3.7-.2 5 .5M8 16.5c1.8-.4 3.7-.2 5 .5M19 13c1.3-.7 3.2-.9 5-.5"/></svg>
-          <h3 class="box__title"><a class="box__link" href="https://punitharumilli.github.io/BestPracticeDocs/">Guidance Document</a></h3>
+          <h3 class="box__title"><a class="box__link" href="https://bamresearch.github.io/drmd-guidance/">Guidance Document</a></h3>
           <p class="box__desc">Explains every element of the schema with rules and examples, for reference material producers, laboratories, software developers and auditors.</p>
           <ul class="box__list">
             <li>Element-by-element reference</li>
@@ -259,13 +251,13 @@ code{font-family:var(--mono)}
           </ul>
           <div class="box__foot">
             <p class="box__action">Read the guidance document</p>
-            <p class="box__host">punitharumilli.github.io/BestPracticeDocs</p>
+            <p class="box__host">bamresearch.github.io/drmd-guidance</p>
           </div>
         </article>
 
         <article class="box">
           <svg class="box__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 27H8.5A2.5 2.5 0 0 1 6 24.5v-17A2.5 2.5 0 0 1 8.5 5H17l6 6v6"/><path d="M17 5v4.5a1.5 1.5 0 0 0 1.5 1.5H23"/><path d="M10.5 15h7M10.5 19h4"/><path d="M21.5 20.5 19 23.5l2.5 3M25.5 20.5l2.5 3-2.5 3"/></svg>
-          <h3 class="box__title"><a class="box__link" href="https://punitharumilli.github.io/DRMD_Generator/">Generator</a></h3>
+          <h3 class="box__title"><a class="box__link" href="https://bamresearch.github.io/drmd-generator/">Generator</a></h3>
           <p class="box__desc">Creates and edits DRMD files in the browser: enter a document by hand, open and edit an existing DRMD, or convert PDF certificates and product information sheets with AI. Every document is validated before export.</p>
           <ul class="box__list">
             <li>Manual entry and editing of DRMD files</li>
@@ -274,13 +266,13 @@ code{font-family:var(--mono)}
           </ul>
           <div class="box__foot">
             <p class="box__action">Open the generator</p>
-            <p class="box__host">punitharumilli.github.io/DRMD_Generator</p>
+            <p class="box__host">bamresearch.github.io/drmd-generator</p>
           </div>
         </article>
 
         <article class="box">
           <svg class="box__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6.5" width="25" height="17" rx="2.5"/><path d="M13.5 11.5v7l6-3.5z"/><path d="M9 27h14"/></svg>
-          <h3 class="box__title"><a class="box__link" href="https://punitharumilli.github.io/DRMD_Videos/">Video Guides</a></h3>
+          <h3 class="box__title"><a class="box__link" href="https://bamresearch.github.io/drmd-videos/">Video Guides</a></h3>
           <p class="box__desc">Step-by-step videos that show how to work with the DRMD tools, with spoken explanation and captions. Each video is divided into chapters, so you can go straight to the step you need.</p>
           <ul class="box__list">
             <li>DRMD AI Generator guide, 12 minutes</li>
@@ -289,7 +281,7 @@ code{font-family:var(--mono)}
           </ul>
           <div class="box__foot">
             <p class="box__action">Watch the videos</p>
-            <p class="box__host">punitharumilli.github.io/DRMD_Videos</p>
+            <p class="box__host">bamresearch.github.io/drmd-videos</p>
           </div>
         </article>
       </div>
@@ -382,10 +374,11 @@ code{font-family:var(--mono)}
 <footer class="footer">
   <div class="wrap footer__inner">
     <div>
-      <p>© 2026 <a href="https://bam.de/en/">Bundesanstalt für Materialforschung <span class="nw">und -prüfung (BAM)</span></a> · Text licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+      <p>© 2026 <a href="https://bam.de/en/">Bundesanstalt für Materialforschung <span class="nw">und -prüfung (BAM)</span></a> · Text licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code under the <a href="https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12">EUPL v1.2</a></p>
+      <p class="footer__note">The DRMD logo and the BAM logo are not covered by these licences. The DRMD logo may be used as described in the <a href="https://github.com/BAMresearch/drmd/blob/main/LOGO_POLICY.md">Logo Policy</a>.</p>
       <p class="footer__note">Partially funded and supported by the <a href="https://www.qi-digital.de/">QI-Digital</a> project</p>
     </div>
-    <p><a href="mailto:drmd@bam.de">drmd@bam.de</a></p>
+    <p class="footer__links"><a href="https://bam.de/en/disclaimer">Imprint</a> · <a href="https://bam.de/en/privacy-policy">Privacy policy</a> · <a href="mailto:drmd@bam.de">drmd@bam.de</a></p>
   </div>
 </footer>
 </body>
